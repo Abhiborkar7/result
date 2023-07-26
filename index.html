@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scorecard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    
+    <!-- form section end -->
+
+    <div class="main-table">
+
+        <section id="form" class="table__header">
+            <h1>Enter Roll No.</h1>
+            <form id="rollNoForm">
+                <!-- <label for="rollNo">Roll No:</label> -->
+                <input type="text" id="rollNo" required>
+                <button type="submit">View Scorecard</button>
+            </form>
+        </section>
+
+        <div id="scorecard">
+            <div class="wrap">
+                <section class="table__body">
+
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+                    <script>
+                        const fileUrl = 'Book1.xlsx';
+
+                        function handleFile() {
+                            const reader = new FileReader();
+
+                            reader.onload = function (e) {
+                                const data = new Uint8Array(e.target.result);
+                                const workbook = XLSX.read(data, { type: 'array' });
+
+                                // Assuming the student data is on the first sheet
+                                const firstSheetName = workbook.SheetNames[0];
+                                const worksheet = workbook.Sheets[firstSheetName];
+                                const studentData = XLSX.utils.sheet_to_json(worksheet);
+
+                                document.getElementById('rollNoForm').addEventListener('submit', function (event) {
+                                    event.preventDefault();
+                                    const inputRollNo = document.getElementById('rollNo').value;
+                                    const student = studentData.find(item => item['Roll No.'] === inputRollNo);
+
+                                    if (student) {
+                                        const scorecardDiv = document.getElementById('scorecard');
+                                        scorecardDiv.innerHTML = ''; // Clear previous scorecard
+                                        const formDiv = document.getElementById('form');
+                                        formDiv.innerHTML = '<h1>Scorecard</h1>'; // Clear previous scorecard
+
+                                        const wrapDiv = document.createElement('div');
+                                        // wrapDiv.setAttribute('id', 'wrap');
+                                        const table = document.createElement('table');
+
+                                        let rowIndex = 0;
+
+                                        // Create vertical table rows for each subject and its grade
+
+
+
+                                        for (const [key, value] of Object.entries(student)) {
+
+
+                                            if (key === 'Name of Student' || key === 'Roll No.' || key === 'Registration No.' || key === 'Rank' || key === 'phyTh' || key === 'phyPr' || key === 'm1Th' || key === 'beeTh' || key === 'beePr' || key === 'egTh' || key === 'egPr' || key === 'emTh' || key === 'eePr' || key === 'm2Th' || key === 'chemTh' || key === 'chemPr' || key === 'ppsTh' || key === 'ppsPr' || key === 'wmpPr' || key === 'pcTh' || key === 'pcPr' || key === 'esPr' || key === 'CGPA') {
+
+                                                const row = table.insertRow();
+                                                const cell1 = row.insertCell();
+                                                cell1.textContent = key;
+                                                const cell2 = row.insertCell();
+                                                cell2.textContent = value;
+
+                                                if (rowIndex === 0) {
+                                                    // Add the desired class to the row (assuming the class name is "highlighted-row")
+                                                    row.classList.add('header-row');
+                                                }
+
+                                                rowIndex++;
+
+                                            }
+                                            else if( key === 'GPA I' || key === 'GPA II') {
+                                                const row = table.insertRow();
+                                                const cell1 = row.insertCell();
+                                                cell1.textContent = key;
+                                                const cell2 = row.insertCell();
+                                                cell2.textContent = value;
+                                            }
+
+                                        }
+                                        // wrapDiv.appendChild(table);
+
+                                        // Append the table to the scorecard div
+                                        scorecardDiv.appendChild(table);
+                                    } else {
+                                        // Roll number not found in the data
+                                        alert('Roll number not found. Please enter a valid roll number.');
+                                    }
+                                });
+                            };
+
+                            fetch(fileUrl)
+                                .then(response => response.arrayBuffer())
+                                .then(data => {
+                                    reader.readAsArrayBuffer(new Blob([data]));
+                                });
+                        }
+
+                        handleFile(); // Call the function directly to load data from Book1.xlsx
+
+                    </script>
+                </section>
+            </div>
+        </div>
+    </div>
+    <p>*data may contain error</p>
+</body>
+
+</html>
