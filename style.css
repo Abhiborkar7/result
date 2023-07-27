@@ -100,6 +100,25 @@ td {
   visibility: visible;
 }
 
+/* ***************************************************** */
+input {
+  width: 30%;
+  padding: 10px;
+  border: 2px solid #fff0;
+  background-color: #fff7;
+  border-radius: 1rem;
+  font-size: 1rem;
+  margin-top: 4px;
+  width: 70%;
+}
+
+button {
+  border: 0px solid #fff0;
+  background-color: #fff0;
+  border-radius: 1rem;
+}
+/* ***************************************************** */
+
 @media screen and (min-width: 768px) and (max-width: 991px) {
   .main-table {
     width: 50vw;
@@ -167,6 +186,4 @@ table {
     width: 95%;
   }
 
-  #scorecard {
-  }
 }
