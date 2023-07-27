@@ -64,7 +64,8 @@ body {
   margin: 10px auto;
   border-radius: 12px;
   width: 95%;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  padding-bottom: 2.25rem;
   border-radius: .7rem;
 }
 
@@ -125,9 +126,24 @@ button {
     
   }
 
-  #scorecard {
+  /* #scorecard {
     margin-bottom: 10px;
     border-radius: 0.5rem;
+  } */
+
+  #scorecard {
+    display: flex;
+    justify-content: center;
+    top: 20px;
+    height: 70vh;
+    overflow: auto;
+    /* margin: 10px auto; */
+    border-radius: 0.5rem;
+    width: 95%;
+    /* margin-bottom: 1.875rem; */
+    padding-bottom: 1.875rem; 
+    margin-bottom: 20px;
+
   }
 
 .table__header {
@@ -145,19 +161,25 @@ table {
   .main-table {
     width: 70vw;
     
+    
   }
   h1 {
     font-size: 1.2rem;
   }
-/* 
-  #scorecard {
-    margin-bottom: 10px;
-    border-radius: 0.5rem;
-  } */
 
-  /* table {
-    margin-bottom: 10px;
-  } */
+  #scorecard {
+    display: flex;
+    justify-content: center;
+    top: 20px;
+    height: 70vh;
+    overflow:hidden;
+    /* margin: 10px auto; */
+    border-radius: 0.5rem;
+    width: 95%;
+    padding-bottom: 3rem; 
+
+  }
+
 
 .table__header {
   padding: 5px 5px;
@@ -167,6 +189,7 @@ table {
 table {
   padding: 5px px;
   width: 95%;
+  
 }
 }
 
@@ -180,9 +203,23 @@ table {
     padding-bottom: 50px;
   }
 
+  #scorecard {
+    display: flex;
+    justify-content: center;
+    top: 20px;
+    height: 70vh;
+    overflow: auto;
+    /* margin: 10px auto; */
+    border-radius: 0.5rem;
+    width: 95%;
+    padding-bottom: 1rem; 
+    margin-bottom: 0px;
+
+  }
+
   table {
     padding: 5px 0px;
-    margin-bottom: 10px;
+    padding-bottom: 1.875rem; 
     width: 95%;
   }
 
